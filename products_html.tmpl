@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 15.33%;
+  padding: 5px;
+}
+
+.column2 {
+  float: left;
+  width: 30.33%;
+  padding: 5px;
+}
+
+.columnimg {
+  float: left;
+  width: 16%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+</head>
+<body>
+<p><strong>Products:</strong> {{ . | len }}</p>
+{{ range . }}
+<hr />
+<div>
+<div class="row">
+    <div class="column"><b>Id</b></div>  
+    <div class="column2">{{ .Id }}</div>
+</div>
+
+<div class="row">
+    <div class="column"><b>Title</b></div>
+    <div class="column2">{{ .Title }}</div>  
+</div>
+
+<div class="row">
+    <div class="column"><b>Description</b></div>
+    <div class="column2">{{ .Description }}</div> 
+</div>
+
+<div class="row">
+    <div class="column"><b>Price</b></div>
+    <div class="column2">{{ .Price }}</div>
+</div>
+
+<div class="row">
+    <div class="column"><b>DiscountPercentage</b></div>
+    <div class="column2">{{ .DiscountPercentage }}</div>
+</div>
+
+<div class="row">
+    <div class="column"><b>Rating</b></div>
+    <div class="column2">{{ .Rating }}</div>
+</div>
+
+<div class="row">
+    <div class="column"><b>Stock</b></div>
+    <div class="column2">{{ .Stock }}</div>
+</div>
+
+<div class="row">
+    <div class="column"><b>Brand</b></div>
+    <div class="column2">{{ .Brand }}</div>
+</div>
+
+<div class="row">
+    <div class="column"><b>Category</b></div>
+    <div class="column2">{{ .Category }}</div>
+</div>
+
+<div class="row">
+    <div class="column"><b>Thumbnail</b></div>
+    <img src={{ .Thumbnail }} width="50" height="60">
+</div>
+
+<div class="row">
+    <div class="column"><b>Images</b></div>
+    </div>
+</div>
+<div class="row">
+    {{range $i, $a := .Images}}
+            <div class="columnimg">
+                <img src={{$a}} alt={{$i}} width="200" height="200">
+            </div>
+    {{ end }}
+</div>
+
+{{ end }}
+</body>
+</html>
+
